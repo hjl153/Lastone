@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Last one</string>
+    <string name="app_name">card</string>
+    <string name="tx1">happy birthday</string>
+    <string name="tx2"> your tom</string>
 </resources>
