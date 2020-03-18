@@ -5,4 +5,15 @@
     <string name="inputwd">inputxx</string>
     <string name="change">changehuashi</string>
     <string name="answer">answer</string>
+    <string name="team1">team1</string>
+    <string name="team2">team2</string>
+    <string name="score1">0</string>
+    <string name="score2">0</string>
+    <string name="sc1">+1</string>
+    <string name="sc2">+2</string>
+    <string name="sc3">+3</string>
+    <string name="sc6">+3</string>
+    <string name="sc5">+2</string>
+    <string name="sc4">+1</string>
+    <string name="reset1">reset</string>
 </resources>

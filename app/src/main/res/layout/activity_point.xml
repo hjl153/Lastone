@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pointActivity">
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tm1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/team1"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/score2"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/sc3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button3"
+            android:text="@string/sc3"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/sc2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button2"
+            android:text="@string/sc2"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/sc1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button1"
+            android:text="@string/sc1"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/reset1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="button7"
+            android:text="@string/reset1"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tm2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/team2"
+            android:textSize="30sp" />
+        <TextView
+            android:id="@+id/score2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/score1"
+            android:layout_marginTop="16dp"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/sc6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button6"
+            android:text="@string/sc6"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/sc5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button5"
+            android:text="@string/sc5"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/sc4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="button4"
+            android:text="@string/sc4"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/reset2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="button8"
+            android:text="@string/reset1"
+            android:textSize="30sp" />
+    </LinearLayout>
+</LinearLayout>
