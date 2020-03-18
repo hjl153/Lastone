@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">card</string>
+    <string name="app_name">start</string>
     <string name="tx1">happy birthday</string>
     <string name="tx2"> your tom</string>
+    <string name="inputwd">inputxx</string>
+    <string name="change">changehuashi</string>
+    <string name="answer">answer</string>
 </resources>

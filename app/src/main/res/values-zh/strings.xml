@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">开始</string>
+    <string name="answer">结果为：</string>
+    <string name="change">转化为华氏温度</string>
+    <string name="inputwd">请输入摄氏度</string>
+    <string name="tx1">生日快乐</string>
+    <string name="tx2">汤姆</string>
+</resources>
