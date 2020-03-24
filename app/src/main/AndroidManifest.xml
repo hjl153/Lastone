@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pointActivity">
+        <activity android:name=".rateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".week4Activity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".pointActivity">
+
         </activity>
+        <activity android:name=".week4Activity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

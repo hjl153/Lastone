@@ -16,4 +16,10 @@
     <string name="sc5">+2</string>
     <string name="sc4">+1</string>
     <string name="reset1">reset</string>
+    <string name="inputmoney">input reat</string>
+    <string name="showout">hello</string>
+    <string name="dollar">dollar</string>
+    <string name="euro">euro</string>
+    <string name="won">won</string>
+    <string name="open">open</string>
 </resources>
