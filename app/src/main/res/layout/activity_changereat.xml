@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".changereatActivity">
+
+    <EditText
+        android:id="@+id/chdollar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/dollar"
+        android:textSize="30sp"
+        android:inputType="numberDecimal"
+         />
+
+    <EditText
+        android:id="@+id/cheuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/euro"
+        android:textSize="30sp"
+        android:inputType="numberDecimal"
+        />
+
+    <EditText
+        android:id="@+id/chwon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/won"
+        android:textSize="30sp"
+        android:inputType="numberDecimal"
+        />
+
+    <Button
+        android:id="@+id/change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onchange"
+        android:text="@string/inputchange"
+        android:textSize="30sp" />
+</LinearLayout>

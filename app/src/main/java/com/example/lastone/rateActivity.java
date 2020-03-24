@@ -24,6 +24,12 @@ public class rateActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     public void onClick(View btn){
         String s1=input.getText().toString();
+        float a,b,c;
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        a=bundle.getFloat("ax");
+        b=bundle.getFloat("bx");
+        c=bundle.getFloat("cx");
         if(s1.length()>0){
         num=Float.parseFloat(s1);}
         else{
@@ -31,18 +37,18 @@ public class rateActivity extends AppCompatActivity {
         }
         float num2=0;
         if(btn.getId()==R.id.dollar){
-            num2=num*(1/6.7f);
+            num2=num*a;
         }
        else if(btn.getId()==R.id.euro){
-            num2=num*(1/11f);
+            num2=num*b;
         }
        else if(btn.getId()==R.id.won){
-            num2=num*500f;
+            num2=num*c;
         }
 
        else{
-            Intent hello=new Intent(this,pointActivity.class);
-            startActivity(hello);
+            intent.setClass(this, changereatActivity.class);
+            startActivity(intent);
         }
         showout.setText(String.format("%.2f",num2));
     }
