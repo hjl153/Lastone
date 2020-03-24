@@ -17,28 +17,28 @@ public class pointActivity extends AppCompatActivity {
         score2=findViewById(R.id.score2);
     }
     public void button1(View sc1){
-        showscore1(1);
+        if(sc1.getId()==R.id.sc1){
+            showscore1(1);}
+        if(sc1.getId()==R.id.sc4){
+            showscore2(1);}
     }
     public void button2(View sc2){
-        showscore1(2);
+        if(sc2.getId()==R.id.sc2){
+            showscore1(2);}
+        if(sc2.getId()==R.id.sc5){
+            showscore2(2);}
     }
     public void button3(View sc3){
-        showscore1(3);
+        if(sc3.getId()==R.id.sc3){
+            showscore1(3);}
+        if(sc3.getId()==R.id.sc6){
+            showscore2(3);}
     }
-    public void button4(View sc4){
-        showscore2(1);
-    }
-    public void button5(View sc5){
-        showscore2(2);
-    }
-    public void button6(View sc6){
-        showscore2(3);
-    }
-    public void button7(View reset1){
-         score1.setText("0");
-    }
-    public void button8(View reset2){
-         score2.setText("0");
+    public void button4(View reset1){
+        if(reset1.getId()==R.id.reset1){
+            score1.setText("0");}
+        if(reset1.getId()==R.id.reset2){
+            score2.setText("0");}
     }
     public void showscore1(int i1){
         Log.i("ok","ok1");

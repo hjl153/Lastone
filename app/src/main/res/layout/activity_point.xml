@@ -7,7 +7,8 @@
     tools:context=".pointActivity">
 
     <LinearLayout
-        android:layout_width="180dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -61,13 +62,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:onClick="button7"
+            android:onClick="button4"
             android:text="@string/reset1"
             android:textSize="30sp" />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/nul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal"
+      />
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -93,8 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="button6"
-            android:text="@string/sc6"
+            android:onClick="button3"
+            android:text="@string/sc3"
             android:textSize="30sp" />
 
         <Button
@@ -102,8 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="button5"
-            android:text="@string/sc5"
+            android:onClick="button2"
+            android:text="@string/sc2"
             android:textSize="30sp" />
 
         <Button
@@ -111,8 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="button4"
-            android:text="@string/sc4"
+            android:onClick="button1"
+            android:text="@string/sc1"
             android:textSize="30sp" />
 
         <Button
@@ -120,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:onClick="button8"
+            android:onClick="button4"
             android:text="@string/reset1"
             android:textSize="30sp" />
     </LinearLayout>
