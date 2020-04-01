@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +29,34 @@ public class rateActivity extends AppCompatActivity {
         showout=findViewById(R.id.showout);
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rate,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==R.id.menurate){
+            openone();
+
+        }
+        return true;
+    }
+
+    private void openone() {
+        Intent config = new Intent(this, changereatActivity.class);
+        config.putExtra("key_dollar", a);
+        config.putExtra("key_euro", b);
+        config.putExtra("key_won", c);
+        Log.i(TAG, "open=dollar" + a);
+        Log.i(TAG, "open=euro" + b);
+        Log.i(TAG, "open=won" + c);
+        startActivityForResult(config, 1);
+    }
+
     @SuppressLint("DefaultLocale")
     public void onClick(View btn){
         String s1=input.getText().toString();
@@ -46,14 +77,8 @@ public class rateActivity extends AppCompatActivity {
         }
         showout.setText(String.valueOf(num2));
         if(btn.getId()==R.id.openpage){
-        Intent config=new Intent(this,changereatActivity.class);
-       config.putExtra("key_dollar",a);
-       config.putExtra("key_euro",b);
-       config.putExtra("key_won", c);
-        Log.i(TAG,"open=dollar"+a);
-        Log.i(TAG,"open=euro"+b);
-        Log.i(TAG,"open=won"+c);
-        startActivityForResult(config,1);}
+            openone();
+        }
    }
 
     @Override
