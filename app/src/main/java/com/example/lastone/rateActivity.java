@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class rateActivity extends AppCompatActivity {
@@ -44,6 +45,7 @@ public class rateActivity extends AppCompatActivity {
             num2=num*c;
         }
         showout.setText(String.valueOf(num2));
+        if(btn.getId()==R.id.openpage){
         Intent config=new Intent(this,changereatActivity.class);
        config.putExtra("key_dollar",a);
        config.putExtra("key_euro",b);
@@ -51,7 +53,20 @@ public class rateActivity extends AppCompatActivity {
         Log.i(TAG,"open=dollar"+a);
         Log.i(TAG,"open=euro"+b);
         Log.i(TAG,"open=won"+c);
-        startActivity(config);
+        startActivityForResult(config,1);}
    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode==1||requestCode==2){
+            Bundle bundle=data.getExtras();
+            a=bundle.getFloat("key_dollar1",0.1f);
+            b=bundle.getFloat("key_euro1",0.1f);
+            c=bundle.getFloat("key_won1",0.1f);
+            Log.i(TAG,"onActivity=dollar"+a);
+            Log.i(TAG,"onActivity=euro"+b);
+            Log.i(TAG,"onActivity=won"+c);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

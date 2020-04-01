@@ -28,5 +28,20 @@ public class changereatActivity extends AppCompatActivity {
     }
     public void onchange(View btn){
         Log.i(TAG,"save:");
+        Float newdollar=Float.parseFloat(dollar1.getText().toString());
+        Float neweuro=Float.parseFloat(euro1.getText().toString());
+        Float newwon=Float.parseFloat(won1.getText().toString());
+        Log.i(TAG,"save:获取到新的值");
+        Log.i(TAG,"save:dollar"+dollar1);
+        Log.i(TAG,"save:euro"+euro1);
+        Log.i(TAG,"save:won"+won1);
+        Intent intent=getIntent();
+        Bundle bd1=new Bundle();
+        bd1.putFloat("key_dollar1",newdollar);
+        bd1.putFloat("key_euro1",neweuro);
+        bd1.putFloat("key_won1",newwon);
+        intent.putExtras(bd1);
+        setResult(2,intent);
+        finish();
     }
 }
