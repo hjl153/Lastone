@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class rateActivity extends AppCompatActivity {
+public class rateActivity extends AppCompatActivity implements Runnable{
      EditText input;
      TextView showout;
      float num;
     float a=0.1f,b=0.2f,c=0.3f;
     String TAG;
+    Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,23 @@ public class rateActivity extends AppCompatActivity {
         a=sp.getFloat("dollar.rate",0.0f);
         b=sp.getFloat("euro.rate",0.0f);
         c=sp.getFloat("won.rate",0.0f);
+
+        Thread t=new Thread(this);
+        t.start();
+        handler=new Handler(){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                if(msg.what==5){
+                    String str=(String)msg.obj;
+                    Log.i(TAG,"showout"+str);
+                    showout.setText(str);
+                }
+                super.handleMessage(msg);
+            }
+
+
+        };
+
     }
 
     @Override
@@ -106,4 +126,61 @@ public class rateActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void run() {
+        Log.i(TAG,"run()");
+        for(int i=0;i<6;i++){
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Message msg=handler.obtainMessage(5);
+        msg.obj="Please input";
+        handler.sendMessage(msg);}}
+        /*URL url= null;
+        try {
+            url = new URL("http://forex.hexun.com/rmbhl/?frommarket=baidurate");
+            HttpURLConnection http=(HttpURLConnection)url.openConnection();
+            InputStream in=http.getInputStream();
+            String html=changeString(in);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+          catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public String changeString(InputStream in){
+        InputStream an =in;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[2048];
+        int length = 0;
+        while(true) {
+            try {
+                if (!((length = an.read(buffer)) != -1)) break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            bos.write(buffer, 0, length);//写入输出流
+        }
+        try {
+            an.close();//读取完毕，关闭输入流
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+// 根据输出流创建字符串对象
+        try {
+            new String(bos.toByteArray(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }
+*/
