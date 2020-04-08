@@ -19,6 +19,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class rateActivity extends AppCompatActivity implements Runnable{
      EditText input;
      TextView showout;
@@ -140,13 +148,14 @@ public class rateActivity extends AppCompatActivity implements Runnable{
 
         Message msg=handler.obtainMessage(5);
         msg.obj="Please input";
-        handler.sendMessage(msg);}}
-        /*URL url= null;
+        handler.sendMessage(msg);
+        URL url= null;
         try {
-            url = new URL("http://forex.hexun.com/rmbhl/?frommarket=baidurate");
+            url = new URL("https://www.usd-cny.com/icbc.htm");
             HttpURLConnection http=(HttpURLConnection)url.openConnection();
             InputStream in=http.getInputStream();
             String html=changeString(in);
+            Log.i(TAG,html);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -156,31 +165,20 @@ public class rateActivity extends AppCompatActivity implements Runnable{
 
 
     }
-    public String changeString(InputStream in){
-        InputStream an =in;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buffer = new byte[2048];
-        int length = 0;
-        while(true) {
-            try {
-                if (!((length = an.read(buffer)) != -1)) break;
-            } catch (IOException e) {
-                e.printStackTrace();
+    public String changeString(InputStream in) throws IOException{
+        final int buf=1024;
+        final char[] buffer=new char[buf];
+        final StringBuilder out=new StringBuilder();
+        Reader inputStream=new InputStreamReader(in,"gb2312");
+        while(true){
+            int res=inputStream.read(buffer,0,buffer.length);
+            if(res<0){
+                break;
             }
-            bos.write(buffer, 0, length);//写入输出流
-        }
-        try {
-            an.close();//读取完毕，关闭输入流
-        } catch (IOException e) {
-            e.printStackTrace();
+            out.append(buffer,0,res);
         }
 
-// 根据输出流创建字符串对象
-        try {
-            new String(bos.toByteArray(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    return out.toString();
     }
+
 }
-*/
