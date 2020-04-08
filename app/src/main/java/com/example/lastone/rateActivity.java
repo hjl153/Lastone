@@ -1,7 +1,9 @@
 package com.example.lastone;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +29,10 @@ public class rateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rate);
         input=findViewById(R.id.rmb);
         showout=findViewById(R.id.showout);
-
+        SharedPreferences sp=getSharedPreferences("myrate", Activity.MODE_PRIVATE);
+        a=sp.getFloat("dollar.rate",0.0f);
+        b=sp.getFloat("euro.rate",0.0f);
+        c=sp.getFloat("won.rate",0.0f);
     }
 
     @Override
@@ -91,6 +96,13 @@ public class rateActivity extends AppCompatActivity {
             Log.i(TAG,"onActivity=dollar"+a);
             Log.i(TAG,"onActivity=euro"+b);
             Log.i(TAG,"onActivity=won"+c);
+            SharedPreferences sp=getSharedPreferences("myrate",Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putFloat("dollar.rate",a);
+            editor.putFloat("euro.rate",b);
+            editor.putFloat("won.rate",c);
+            editor.commit();
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
