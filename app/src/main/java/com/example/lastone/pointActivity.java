@@ -1,11 +1,12 @@
 package com.example.lastone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class pointActivity extends AppCompatActivity {
     TextView score1,score2;
@@ -16,6 +17,27 @@ public class pointActivity extends AppCompatActivity {
         score1=findViewById(R.id.score1);
         score2=findViewById(R.id.score2);
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String scorea=score1.getText().toString();
+        String scoreb=score2.getText().toString();
+        Log.i("TAG","onSaveInstanceState");
+        outState.putString("sc1",scorea);
+        outState.putString("sc2",scoreb);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String scorea=savedInstanceState.getString("sc1");
+        String scoreb=savedInstanceState.getString("sc2");
+        Log.i("TAG","onRestoreInstanceState");
+        score1.setText(scorea);
+        score2.setText(scoreb);
+    }
+
     public void button1(View sc1){
         if(sc1.getId()==R.id.sc1){
             showscore1(1);}
