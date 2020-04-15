@@ -49,26 +49,25 @@ public class rateActivity extends AppCompatActivity implements Runnable{
 
         Thread t=new Thread(this);
         t.start();
-        handler=new Handler(){
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                if(msg.what==5){
-                   Bundle bdl=(Bundle)msg.obj;
-                   a=bdl.getFloat("dollar_rate");
-                    b=bdl.getFloat("euro_rate");
-                    c=bdl.getFloat("won_rate");
-                    Log.i(TAG,"dollar_rate"+a);
-                    Log.i(TAG,"euro_rate"+b);
-                    Log.i(TAG,"won_rate"+c);
-                    Toast.makeText(rateActivity.this,"汇率已更新",Toast.LENGTH_LONG).show();;
-                }
-                super.handleMessage(msg);
+                handler=new Handler(){
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        if(msg.what==5){
+                            Bundle bdl=(Bundle)msg.obj;
+                            a=bdl.getFloat("dollar_rate");
+                            b=bdl.getFloat("euro_rate");
+                            c=bdl.getFloat("won_rate");
+                            Log.i(TAG,"dollar_rate"+a);
+                            Log.i(TAG,"euro_rate"+b);
+                            Log.i(TAG,"won_rate"+c);
+                            Toast.makeText(rateActivity.this,"汇率已更新",Toast.LENGTH_LONG).show();;
+                        }
+                        super.handleMessage(msg);
+                    }
+
+
+                };
             }
-
-
-        };
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -182,8 +181,6 @@ public class rateActivity extends AppCompatActivity implements Runnable{
         Message msg=handler.obtainMessage(5);
         msg.obj=bundle;
         handler.sendMessage(msg);
-
-        handler.postDelayed(this,1000);//定时时间
 
     }
     public String changeString(InputStream in) throws IOException{
