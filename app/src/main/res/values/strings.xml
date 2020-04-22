@@ -24,4 +24,6 @@
     <string name="open">open</string>
     <string name="inputchange">input</string>
     <string name="menurate">setting</string>
+    <string name="listRate">listRate</string>
+    <string name="mylist">mylist</string>
 </resources>

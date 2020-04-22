@@ -106,6 +106,14 @@ public class rateActivity extends AppCompatActivity implements Runnable {
             openone();
 
         }
+        else if(item.getItemId()==R.id.list_rate){
+            Intent config = new Intent(this, RateListActivity.class);
+            startActivity(config);
+        }
+        else if(item.getItemId()==R.id.mylist){
+            Intent config = new Intent(this,MyListActivity.class);
+            startActivity(config);
+        }
         return true;
     }
 
