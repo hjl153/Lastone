@@ -28,13 +28,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-public class rateActivity extends AppCompatActivity implements Runnable{
+public class rateActivity extends AppCompatActivity implements Runnable {
      EditText input;
      TextView showout;
      float num;
     float a=0.1f,b=0.2f,c=0.3f;
-    String TAG;
+    String TAG,updateDate="";
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,21 @@ public class rateActivity extends AppCompatActivity implements Runnable{
         a=sp.getFloat("dollar.rate",0.0f);
         b=sp.getFloat("euro.rate",0.0f);
         c=sp.getFloat("won.rate",0.0f);
+        updateDate=sp.getString("update_rate","");
+        Date today= Calendar.getInstance().getTime();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy_MM_dd");
+        final String today_sdr=sdf.format(today);
+        Log.i(TAG,"oncreate:更新时间"+updateDate);
+        Log.i(TAG,"oncreate:当前时间"+today_sdr);
+        if(!today_sdr.equals(updateDate)){
+            Thread t=new Thread(this);
+            t.start();
 
-        Thread t=new Thread(this);
-        t.start();
+            Log.i(TAG,"oncreate:需要更新");
+        }
+        else{
+            Log.i(TAG,"oncreate:不需要更新");
+        }
                 handler=new Handler(){
                     @Override
                     public void handleMessage(@NonNull Message msg) {
@@ -60,6 +75,13 @@ public class rateActivity extends AppCompatActivity implements Runnable{
                             Log.i(TAG,"dollar_rate"+a);
                             Log.i(TAG,"euro_rate"+b);
                             Log.i(TAG,"won_rate"+c);
+                            SharedPreferences sp=getSharedPreferences("myrate",Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor=sp.edit();
+                            editor.putFloat("dollar.rate",a);
+                            editor.putFloat("euro.rate",b);
+                            editor.putFloat("won.rate",c);
+                            editor.putString("update_rate",today_sdr);
+                            editor.commit();
                             Toast.makeText(rateActivity.this,"汇率已更新",Toast.LENGTH_LONG).show();;
                         }
                         super.handleMessage(msg);
@@ -67,6 +89,8 @@ public class rateActivity extends AppCompatActivity implements Runnable{
 
 
                 };
+
+
             }
 
     @Override
@@ -151,13 +175,20 @@ public class rateActivity extends AppCompatActivity implements Runnable{
                 e.printStackTrace();
             }
         }
+        Bundle bundle = getFormatboc();
+        Message msg=handler.obtainMessage(5);
+        msg.obj=bundle;
+        handler.sendMessage(msg);
+
+    }
+    private Bundle getFormatusdcny() {
         Bundle bundle=new Bundle();
         String url="http://www.usd-cny.com/bankofchina.htm";
         try {
             Document doc= Jsoup.connect(url).get();
             Log.i(TAG,"run="+doc.title());
             Elements tables=doc.getElementsByTag("table");
-           Element table6=tables.get(0);
+            Element table6=tables.get(0);
             Log.i(TAG,"run"+table6);
             Elements tds=table6.getElementsByTag("td");
             for(int i=0;i< tds.size();i+=6){
@@ -167,22 +198,48 @@ public class rateActivity extends AppCompatActivity implements Runnable{
                 String val=td1.text();
                 String com=td2.text();
                 if("美元".equals(val)){
-                     bundle.putFloat("dollar_rate",100f/Float.parseFloat(com));
-            }
+                    bundle.putFloat("dollar_rate",100f/Float.parseFloat(com));
+                }
                 else if("欧元".equals(val)){
                     bundle.putFloat("euro_rate",100f/Float.parseFloat(com));
                 }
                 if("韩元".equals(val)){
                     bundle.putFloat("won_rate",100f/Float.parseFloat(com));
                 }
+            } }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bundle;
+    }
+    private Bundle getFormatboc() {
+        Bundle bundle=new Bundle();
+        String url="https://www.boc.cn/sourcedb/whpj/";
+        try {
+            Document doc= Jsoup.connect(url).get();
+            Log.i(TAG,"run="+doc.title());
+            Elements tables=doc.getElementsByTag("table");
+           Element table6=tables.get(1);
+            Elements tds=table6.getElementsByTag("td");
+            for(int i=0;i< tds.size();i+=8){
+                Element td1=tds.get(i);
+                Element td2=tds.get(i+5);
+                String val=td1.text();
+                String com=td2.text();
+                if("美元".equals(val)){
+                     bundle.putFloat("dollar_rate",100f/Float.parseFloat(com));
+            }
+                else if("欧元".equals(val)){
+                    bundle.putFloat("euro_rate",100f/Float.parseFloat(com));
+                }
+                if("韩国元".equals(val)){
+                    bundle.putFloat("won_rate",100f/Float.parseFloat(com));
+                }
         } }catch (IOException e) {
             e.printStackTrace();
         }
-        Message msg=handler.obtainMessage(5);
-        msg.obj=bundle;
-        handler.sendMessage(msg);
-
+        return bundle;
     }
+
     public String changeString(InputStream in) throws IOException{
         final int buf=1024;
         final char[] buffer=new char[buf];
