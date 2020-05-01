@@ -18,7 +18,8 @@ public class List2Activity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initListView();
-        this.setListAdapter(listItemAdapter);
+        MyAdapter myAdapter=new MyAdapter(this,R.layout.activity_list2,listItems);
+        this.setListAdapter(myAdapter);
     }
     private  void initListView(){
         listItems=new ArrayList<HashMap<String ,String>>();
