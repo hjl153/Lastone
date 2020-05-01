@@ -111,7 +111,7 @@ public class rateActivity extends AppCompatActivity implements Runnable {
             startActivity(config);
         }
         else if(item.getItemId()==R.id.mylist){
-            Intent config = new Intent(this,MyListActivity.class);
+            Intent config = new Intent(this,List2Activity.class);
             startActivity(config);
         }
         return true;
