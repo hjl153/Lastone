@@ -1,11 +1,15 @@
 package com.example.lastone;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -19,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class List2Activity extends ListActivity implements Runnable{
+public class List2Activity<onItemClick> extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
     Handler handler;
     private ArrayList<HashMap<String ,String>> listItems;
     private SimpleAdapter listItemAdapter;
@@ -50,6 +54,7 @@ public class List2Activity extends ListActivity implements Runnable{
             }
 
         };
+        getListView().setOnItemClickListener(this);
     }
     private  void initListView(){
         listItems=new ArrayList<HashMap<String ,String>>();
@@ -95,4 +100,26 @@ public class List2Activity extends ListActivity implements Runnable{
         msg.obj=ratelist;
         handler.sendMessage(msg);
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        HashMap<String ,String> map= (HashMap<String, String>) getListView().getItemAtPosition(position);
+        String titlestr=map.get("ItemTitle");
+        String detailstr=map.get("ItemDetail");
+        Log.i("TAG",titlestr+detailstr);
+        TextView title = view.findViewById(R.id.itemTitle);
+        TextView detail=view.findViewById(R.id.itemDetail);
+        String title2=String.valueOf(title.getText());
+        String detail2=String.valueOf(detail.getText());
+        detail.setText("detail"+map.get("ItemDetail"));
+        Log.i("TAG",title2+detail2);
+
+        Intent ratecal=new Intent(this,RatecalActivity.class);
+        ratecal.putExtra("title",titlestr);
+        ratecal.putExtra("detail",Float.parseFloat(detailstr));
+        startActivity(ratecal);
+
+    }
+
+
 }
