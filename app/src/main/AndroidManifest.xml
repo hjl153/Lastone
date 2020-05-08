@@ -14,17 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RatecalActivity"></activity>
-        <activity android:name=".List2Activity" />
-        <activity android:name=".MyListActivity" />
-        <activity android:name=".RateListActivity" />
-        <activity android:name=".changereatActivity" />
-        <activity android:name=".rateActivity">
+        <activity android:name=".SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RatecalActivity" />
+        <activity android:name=".List2Activity" />
+        <activity android:name=".MyListActivity" />
+        <activity android:name=".RateListActivity" />
+        <activity android:name=".changereatActivity" />
+        <activity android:name=".rateActivity">
         </activity>
         <activity android:name=".pointActivity" />
         <activity android:name=".week4Activity" />

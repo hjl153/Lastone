@@ -6,4 +6,7 @@
     <string name="inputwd">请输入摄氏度</string>
     <string name="tx1">生日快乐</string>
     <string name="tx2">汤姆</string>
+    <string name="Search">请输入查询关键词</string>
+    <string name="chaxun">查询</string>
+    <string name="tongzhi">学院通知查询</string>
 </resources>
