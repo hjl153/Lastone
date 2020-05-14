@@ -1,6 +1,8 @@
 package com.example.lastone;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class List2Activity<onItemClick> extends ListActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     Handler handler;
-    private ArrayList<HashMap<String ,String>> listItems;
+    private List<HashMap<String ,String>> listItems;
     private SimpleAdapter listItemAdapter;
 
 
@@ -33,8 +35,8 @@ public class List2Activity<onItemClick> extends ListActivity implements Runnable
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initListView();
-        MyAdapter myAdapter=new MyAdapter(this,R.layout.activity_list2,listItems);
-        this.setListAdapter(myAdapter);
+        //MyAdapter myAdapter=new MyAdapter(this,R.layout.activity_list2,listItems);
+        this.setListAdapter(listItemAdapter);
 
         Thread t=new Thread(this);
         t.start();
@@ -42,12 +44,12 @@ public class List2Activity<onItemClick> extends ListActivity implements Runnable
             @Override
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 5) {
-                    List<HashMap<String,String>> retlist= (List<HashMap<String, String>>) msg.obj;
+                    listItems= (List<HashMap<String, String>>) msg.obj;
 
-                    SimpleAdapter adapter  =new SimpleAdapter(List2Activity.this,retlist,R.layout.activity_list2,
+                      listItemAdapter=new SimpleAdapter(List2Activity.this,listItems,R.layout.activity_list2,
                             new String[]{"ItemTitle","ItemDetail"},
                             new int[]{R.id.itemTitle,R.id.itemDetail});
-                    setListAdapter(adapter);
+                    setListAdapter(listItemAdapter);
                 }
                 super.handleMessage(msg);
 
@@ -124,8 +126,18 @@ public class List2Activity<onItemClick> extends ListActivity implements Runnable
 
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         Log.i("Longclick","cilck");
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示").setMessage("请确认是否删除当前数据").setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.i("Longclick","对话框处理");
+                listItems.remove(position);
+                listItemAdapter.notifyDataSetChanged();
+            }
+        }).setNegativeButton("否",null);
+        builder.create().show();
         return true;
     }
 }
