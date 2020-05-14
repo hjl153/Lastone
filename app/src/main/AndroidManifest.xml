@@ -16,13 +16,9 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".SearchActivity">
         </activity>
-        <activity android:name=".RatecalActivity" />
+        <activity android:name=".RatecalActivity"  android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".List2Activity" />
-        <activity android:name=".MyListActivity" ><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".MyListActivity" ></activity>
         <activity android:name=".RateListActivity" />
         <activity android:name=".changereatActivity" />
         <activity android:name=".rateActivity"><intent-filter>

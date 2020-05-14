@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class List2Activity<onItemClick> extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
+public class List2Activity<onItemClick> extends ListActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     Handler handler;
     private ArrayList<HashMap<String ,String>> listItems;
     private SimpleAdapter listItemAdapter;
@@ -55,6 +55,7 @@ public class List2Activity<onItemClick> extends ListActivity implements Runnable
 
         };
         getListView().setOnItemClickListener(this);
+        getListView().setOnItemLongClickListener(this);
     }
     private  void initListView(){
         listItems=new ArrayList<HashMap<String ,String>>();
@@ -122,4 +123,9 @@ public class List2Activity<onItemClick> extends ListActivity implements Runnable
     }
 
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("Longclick","cilck");
+        return true;
+    }
 }
